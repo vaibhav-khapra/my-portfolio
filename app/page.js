@@ -692,7 +692,7 @@ const App = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={slideInRight}
             >
-              <form className="space-y-6">
+              <form action="https://formspree.io/f/xpwldkvr" method="POST" className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
                   <input
