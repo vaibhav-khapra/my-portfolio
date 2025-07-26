@@ -751,7 +751,7 @@ const App = () => {
             &copy; {new Date().getFullYear()} Vaibhav Khapra. All rights reserved.
           </p>
           <p className="text-sm mt-2">
-            Built with <span className="text-red-500">&hearts;</span> and Next.js
+            Developed by Vaibhav Khapra<span className="text-red-500">&hearts;</span> 
           </p>
         </div>
       </footer>
