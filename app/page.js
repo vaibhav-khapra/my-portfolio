@@ -162,7 +162,7 @@ const App = () => {
     };
 
     try {
-      const response = await fetch("https://formspree.io/f/abcxyz", {
+      const response = await fetch("https://formspree.io/f/xpwldkvr", {
         method: "POST",
         headers: {
           Accept: "application/json",
