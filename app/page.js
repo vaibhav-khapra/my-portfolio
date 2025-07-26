@@ -172,7 +172,7 @@ const App = () => {
       });
 
       if (response.ok) {
-        toast.success("Message sent successfully! I'll get back to you soon.", {
+        toast.success("Message sent successfully! We'll get back to you soon.", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
