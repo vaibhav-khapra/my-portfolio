@@ -1,11 +1,19 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'; // Import motion from framer-motion
+import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // State for form inputs
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,7 +136,7 @@ const App = () => {
       details: [
         "Secured 85.6% in CBSE Board Exams (Science Stream with Computer Science).",
         "Developed a secure online voting system as part of final year project.",
-        "Led school's tech club and organized coding challenges and seminars.",
+        "Led school's tech club and organized coding challenges and seminars."
       ]
     },
     {
@@ -142,6 +150,70 @@ const App = () => {
       ]
     }
   ];
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name,
+      email,
+      subject, // Include subject in formData
+      message,
+    };
+
+    try {
+      const response = await fetch("https://formspree.io/f/abcxyz", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Message sent successfully! I'll get back to you soon.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        // Clear form fields
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      } else {
+        toast.error("Failed to send message. Please try again later.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred. Please try again later.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
 
   // Animation variants
   const fadeIn = {
@@ -172,6 +244,9 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 font-sans text-gray-800 antialiased">
+      {/* ToastContainer for notifications */}
+      <ToastContainer />
+
       {/* Navigation Bar */}
       <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
         <div className="container mx-auto flex justify-between items-center px-6">
@@ -692,13 +767,15 @@ const App = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={slideInRight}
             >
-              <form action="https://formspree.io/f/xpwldkvr" method="POST" className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
                     placeholder="John Doe"
                   />
@@ -709,6 +786,8 @@ const App = () => {
                     type="email"
                     id="email"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
                     placeholder="john.doe@example.com"
                   />
@@ -719,6 +798,8 @@ const App = () => {
                     type="text"
                     id="subject"
                     name="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
                     placeholder="Project Inquiry"
                   />
@@ -729,6 +810,8 @@ const App = () => {
                     id="message"
                     name="message"
                     rows="5"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"
                     placeholder="Tell me about your project..."
                   ></textarea>
@@ -751,7 +834,7 @@ const App = () => {
             &copy; {new Date().getFullYear()} Vaibhav Khapra. All rights reserved.
           </p>
           <p className="text-sm mt-2">
-            Developed by Vaibhav Khapra<span className="text-red-500">&hearts;</span> 
+            Developed by Vaibhav Khapra<span className="text-red-500">&hearts;</span>
           </p>
         </div>
       </footer>
