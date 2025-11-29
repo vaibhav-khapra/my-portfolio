@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
+
 // --- CUSTOM STYLES & COMPONENTS ---
 // Dark Mode Colors: Deep Navy/Charcoal background, Light Gold/Electric Teal accent
 const PRIMARY_COLOR = 'text-amber-400'; // Accent color
@@ -492,7 +494,7 @@ const App = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className={`text-5xl md:text-6xl font-extrabold mb-4 ${TEXT_COLOR} leading-tight`}
             >
-              Hello, I'm <span className="bg-gradient-to-r from-amber-400 to-yellow-200 bg-clip-text text-transparent">Vaibhav</span>
+              Hello, I'm <span className="bg-gradient-to-r from-amber-400 to-yellow-200 bg-clip-text text-transparent">Vaibhav Khapra</span>
             </motion.h1>
 
             <motion.p
