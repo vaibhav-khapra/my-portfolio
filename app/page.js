@@ -289,7 +289,7 @@ const App = () => {
     {
       degree: "B.Tech in Computer Science and Engineering",
       university: "SRM University, Sonipat",
-      duration: "Aug 2022 – Present",
+      duration: "Aug 2022 – June 2026",
       details: [
         "Focused on Software Engineering, Artificial Intelligence, and Cloud Computing.",
         "Completed multiple certifications in Cyber Security, web development and many more fields.",
